@@ -37,8 +37,7 @@ namespace ScratchPatch.BulkCopy
         public async Task BulkInsertAsync<T>(QueryParmContainer<T> query) where T : class
         {
             validateQueryParms(query,
-                nameof(QueryParmContainer<T>.DataModels),
-                nameof(QueryParmContainer<T>.PropertiesForUpdate)
+                nameof(QueryParmContainer<T>.DataModels)
                 );
 
             await getConnectionAsync<T>(async connection =>
@@ -78,8 +77,7 @@ namespace ScratchPatch.BulkCopy
                 {
                     try
                     {
-                        //TODO : Add properties to update
-                        await bulkCopyUpdateAsync(query.DataModels, query.BatchSize, query.PropertiesForJoin, connection, transaction).ConfigureAwait(false);
+                        await bulkCopyUpdateAsync(query.DataModels, query.BatchSize, query.PropertiesForJoin, query.PropertiesForUpdate, connection, transaction).ConfigureAwait(false);
                         transaction.Commit();
                     }
                     catch (Exception)
@@ -200,7 +198,7 @@ namespace ScratchPatch.BulkCopy
             }
         }
 
-        private async Task bulkCopyUpdateAsync<T>(IEnumerable<T> items, int batchSize, IEnumerable<string> joinNames, SqlConnection connection, SqlTransaction transaction) where T : class
+        private async Task bulkCopyUpdateAsync<T>(IEnumerable<T> items, int batchSize, IEnumerable<string> joinNames, IEnumerable<string> updateNames, SqlConnection connection, SqlTransaction transaction) where T : class
         {
             if (items.IsNullOrEmpty() || batchSize <= 0)
                 return;
@@ -209,11 +207,11 @@ namespace ScratchPatch.BulkCopy
             string tableName = typeof(T).Name;
             string schemaName = "dbo";
 
-            string[] propertyNames = dt.Columns.OfType<DataColumn>().Select(dc => dc.ColumnName).ToArray();
+            var propertyNames = dt.Columns.OfType<DataColumn>().Select(dc => dc.ColumnName);
             string selectColumns = string.Join(",", propertyNames);
 
             StringBuilder sb = new StringBuilder();
-            propertyNames.ForEach(propName => sb.Append($",T.{propName} = Temp.{propName}"));
+            (updateNames ?? propertyNames).ForEach(propName => sb.Append($",T.{propName} = Temp.{propName}"));
             sb.Remove(0, 1);
             string updateColumns = sb.ToString();
 
