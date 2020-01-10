@@ -10,20 +10,11 @@ namespace ScratchPatch.Extensions
     {
         #region Public Methods
 
-        public static bool Between(this int itm, int min, int max)
-        {
-            return itm >= min && itm <= max;
-        }
+        public static bool Between(this int itm, int min, int max) => itm >= min && itm <= max;
 
-        public static bool Between(this decimal itm, decimal min, decimal max)
-        {
-            return itm >= min && itm <= max;
-        }
+        public static bool Between(this decimal itm, decimal min, decimal max) => itm >= min && itm <= max;
 
-        public static bool Between(this DateTime itm, DateTime min, DateTime max)
-        {
-            return itm >= min && itm <= max;
-        }
+        public static bool Between(this DateTime itm, DateTime min, DateTime max) => itm >= min && itm <= max;
 
         public static void ForEach<T>(this IEnumerable<T> collection, Action<T> action)
         {
@@ -66,40 +57,19 @@ namespace ScratchPatch.Extensions
             return value;
         }
 
-        public static bool In<T>(this T itemToCheck, params T[] items)
-        {
-            return items != null && items.Any(itm => itm.Equals(itemToCheck));
-        }
+        public static bool In<T>(this T itemToCheck, params T[] items) => items != null && items.Any(itm => itm.Equals(itemToCheck));
 
-        public static bool In<T>(this T itemToCheck, IEnumerable<T> items)
-        {
-            return items != null && items.Any(itm => itm.Equals(itemToCheck));
-        }
+        public static bool In<T>(this T itemToCheck, IEnumerable<T> items) => items != null && items.Any(itm => itm.Equals(itemToCheck));
 
-        public static bool In(this string itemToCheck, StringComparison comparison, params string[] items)
-        {
-            return items != null && items.Any(itm => String.Equals(itemToCheck, itm, comparison));
-        }
+        public static bool In(this string itemToCheck, StringComparison comparison, params string[] items) => items != null && items.Any(itm => string.Equals(itemToCheck, itm, comparison));
 
-        public static bool IsNullOrEmpty<T>(this IEnumerable<T> collection)
-        {
-            return collection == null || !collection.Any();
-        }
+        public static bool IsNullOrEmpty<T>(this IEnumerable<T> collection) => collection == null || !collection.Any();
 
-        public static bool IsNullOrEmpty(this string self)
-        {
-            return string.IsNullOrEmpty(self);
-        }
+        public static bool IsNullOrEmpty(this string self) => string.IsNullOrEmpty(self);
 
-        public static bool IsNullOrWhiteSpace(this string self)
-        {
-            return string.IsNullOrWhiteSpace(self);
-        }
+        public static bool IsNullOrWhiteSpace(this string self) => string.IsNullOrWhiteSpace(self);
 
-        public static KeyValuePair<string, object> PairWith(this string key, object value)
-        {
-            return new KeyValuePair<string, object>(key, value);
-        }
+        public static KeyValuePair<string, object> PairWith(this string key, object value) => new KeyValuePair<string, object>(key, value);
 
         public static DataTable ToDataTable<T>(
                this IEnumerable<T> items,

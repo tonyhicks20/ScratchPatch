@@ -21,7 +21,6 @@ namespace ScratchPatch.BulkCopy
         #region Public Properties
 
         public int BatchSize { get; private set; } = 1000;
-
         public IEnumerable<T> DataModels { get; private set; }
         public IEnumerable<string> PrimaryKeyColumns { get; private set; }
         public IEnumerable<string> PropertiesForJoin { get; private set; }
