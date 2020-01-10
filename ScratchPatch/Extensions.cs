@@ -95,6 +95,7 @@ namespace ScratchPatch.Extensions
         {
             return string.IsNullOrWhiteSpace(self);
         }
+
         public static KeyValuePair<string, object> PairWith(this string key, object value)
         {
             return new KeyValuePair<string, object>(key, value);
@@ -159,7 +160,7 @@ namespace ScratchPatch.Extensions
                 return null;
 
             if (isNullable(t))
-                return t.IsValueType ? Nullable.GetUnderlyingType(t) : t;    
+                return t.IsValueType ? Nullable.GetUnderlyingType(t) : t;
 
             if (t.IsEnum)
                 return Enum.GetUnderlyingType(t);

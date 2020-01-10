@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace ScratchPatch.BulkCopy
 {
@@ -59,5 +57,4 @@ namespace ScratchPatch.BulkCopy
 
         #endregion Public Methods
     }
-
 }
