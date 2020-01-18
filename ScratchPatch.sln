@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29411.108
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScratchPatch", "ScratchPatch\ScratchPatch.csproj", "{2F34CB36-8B51-4E94-B0CB-8F2F14F9039A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScratchPatch.Tests", "ScratchPatch.Tests\ScratchPatch.Tests.csproj", "{1C64E0EE-6889-4503-98B1-D7CD74422DD8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{2F34CB36-8B51-4E94-B0CB-8F2F14F9039A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F34CB36-8B51-4E94-B0CB-8F2F14F9039A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F34CB36-8B51-4E94-B0CB-8F2F14F9039A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C64E0EE-6889-4503-98B1-D7CD74422DD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C64E0EE-6889-4503-98B1-D7CD74422DD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C64E0EE-6889-4503-98B1-D7CD74422DD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C64E0EE-6889-4503-98B1-D7CD74422DD8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
