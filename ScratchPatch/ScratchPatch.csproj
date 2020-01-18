@@ -5,15 +5,14 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Tony Hicks</Authors>
     <Description>A scratch patch is a South African term for an area of semi-precious rocks that you dig around and fill a bag with whatever looks appealing to you. This project aims to be a similar idea. I hope to bundle some code in here that I've written based on work experience and have found useful across many business domains.</Description>
+    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0.1</AssemblyVersion>
+    <FileVersion>1.0.0.1</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="3.1.1" />
     <PackageReference Include="System.Data.SqlClient" Version="4.7.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Locking\" />
   </ItemGroup>
 
 </Project>
