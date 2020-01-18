@@ -27,7 +27,7 @@ namespace ScratchPatch.Caching.InProcess
 		{
 			if (_MemoryCacheInstance.TryGetValue(CreateKey(key, subKey), out T data))
 				return data;
-			return default;
+			return default(T);
 		}
 
 		public async Task InsertAsync<T>(string key, string subKey, T data, TimeSpan timeSpan)
