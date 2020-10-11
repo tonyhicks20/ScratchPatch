@@ -302,9 +302,6 @@ namespace ScratchPatch.BulkCopy
                 }
             }
 
-            if (query.PropertiesForUpdate.IsNullOrEmpty())
-                errorMessage.AppendLine("PropertiesForUpdate must be specified");
-
             if (errorMessage.Length > 0)
                 throw new NotSupportedException(errorMessage.ToString());
         }
