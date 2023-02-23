@@ -5,13 +5,11 @@ using System.Threading.Tasks;
 
 namespace ScratchPatch.Caching.InProcess
 {
-	public class InProcessCacheLock : ICacheLock
+	public class InMemoryCacheLockV1 : ICacheLock
 	{
-		#region Private Fields
 
-		private readonly static ConcurrentDictionary<string, LockTracker> _Locks = new ConcurrentDictionary<string, LockTracker>();
-
-		#endregion Private Fields
+		private static readonly ConcurrentDictionary<string, LockTracker> Locks = new ConcurrentDictionary<string, LockTracker>();
+		
 
 		#region Public Methods
 
@@ -22,10 +20,8 @@ namespace ScratchPatch.Caching.InProcess
 
 		public async Task LockAsync(string key, string subKey, Func<Task> insideLock)
 		{
-			//Modified version of : http://stackoverflow.com/questions/5578744/doing-locking-in-asp-net-correctly
-			//And : https://blog.cdemi.io/async-waiting-inside-c-sharp-locks/
 			string lockKey = GetLockKey(key, subKey);
-			LockTracker lockTracker = _Locks.GetOrAdd(lockKey + "0", k => new LockTracker());
+			LockTracker lockTracker = Locks.GetOrAdd(lockKey + "0", k => new LockTracker());
 			Interlocked.Increment(ref lockTracker.WaitingThreads);
 
 			try
@@ -35,7 +31,7 @@ namespace ScratchPatch.Caching.InProcess
 			}
 			finally
 			{
-				_Locks.TryRemove(lockKey + Interlocked.Decrement(ref lockTracker.WaitingThreads), out LockTracker _);
+				Locks.TryRemove(lockKey + Interlocked.Decrement(ref lockTracker.WaitingThreads), out LockTracker _);
 				lockTracker.Lock.Release();
 			}
 		}

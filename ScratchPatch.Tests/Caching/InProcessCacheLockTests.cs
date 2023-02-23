@@ -16,7 +16,7 @@ namespace ScratchPatch.Caching.Tests
 		[TestMethod]
 		public void NoConcurrencyAllowed()
 		{
-			InProcessCacheLock lck = new InProcessCacheLock();
+			InMemoryCacheLockV2 lck = new InMemoryCacheLockV2();
 			int checker = 0;
 
 			Dictionary<int, int> threads = new Dictionary<int, int>();

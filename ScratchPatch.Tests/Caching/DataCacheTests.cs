@@ -20,7 +20,7 @@ namespace ScratchPatch.Caching.Tests
 
 		#region Private Fields
 
-		private readonly DataCache _Cache;
+		private readonly ReadThroughCache _Cache;
 
 		/// <summary>
 		/// Everytime there is a cache miss, this value is incremented
@@ -37,7 +37,7 @@ namespace ScratchPatch.Caching.Tests
 
 		public DataCacheTests()
 		{
-			_Cache = new DataCache
+			_Cache = new ReadThroughCache
 				(
 					new InProcessCacheStore(
 						new ServiceCollection()
@@ -45,7 +45,7 @@ namespace ScratchPatch.Caching.Tests
 					   .BuildServiceProvider()
 					   .GetService<IMemoryCache>()
 					),
-					new InProcessCacheLock(),
+					new InMemoryCacheLockV1(),
 					new FiveMinuteTimePolicy()
 				);
 			_MainKey = "MainKey";

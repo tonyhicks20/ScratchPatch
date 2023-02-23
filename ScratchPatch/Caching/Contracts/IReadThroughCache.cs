@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace ScratchPatch.Caching
 {
-	public interface IDataCache
+	public interface IReadThroughCache
 	{
 		/// <summary>
 		/// Gets an item from the cache

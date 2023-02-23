@@ -10,7 +10,7 @@ namespace ScratchPatch.Caching
 	/// The default implementation of IDataCache
 	/// Generally this will be used, and its dependencies replaced to do what is required
 	/// </summary>
-	public class DataCache : IDataCache
+	public class ReadThroughCache : IReadThroughCache
 	{
 		#region Private Fields
 
@@ -22,7 +22,7 @@ namespace ScratchPatch.Caching
 
 		#region Public Constructors
 
-		public DataCache(ICacheStore cacheStore, ICacheLock locker, ICacheTimePolicy cacheTimePolicy)
+		public ReadThroughCache(ICacheStore cacheStore, ICacheLock locker, ICacheTimePolicy cacheTimePolicy)
 		{
 			_CacheStore = cacheStore;
 			_CacheTimePolicy = cacheTimePolicy;
